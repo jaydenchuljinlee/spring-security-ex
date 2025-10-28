@@ -2,18 +2,14 @@ package com.example.security.config.security;
 
 import com.example.security.config.security.filter.JwtTokenFilterFactory;
 import com.example.security.config.security.handler.form.FormLoginSuccessHandler;
-import com.example.security.config.security.handler.oauth.OAuth2AuthenticationSuccessHandler;
-import com.example.security.core.user.application.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -22,8 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
     private final JwtTokenFilterFactory jwtTokenFilterFactory;
-    private final CustomOAuth2UserService customOAuth2UserService;
-    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final FormLoginSuccessHandler formLoginSuccessHandler;
     private final Environment environment;
 
@@ -70,11 +64,6 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .successHandler(formLoginSuccessHandler)
 
-                .and()
-                .oauth2Login()
-                .successHandler(oAuth2AuthenticationSuccessHandler)
-                .userInfoEndpoint().userService(customOAuth2UserService)
-                .and()
 
                 .and()
                 .addFilterBefore(jwtTokenFilterFactory.getInstance(), UsernamePasswordAuthenticationFilter.class);
