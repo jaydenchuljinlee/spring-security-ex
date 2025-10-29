@@ -3,8 +3,8 @@ package com.example.security.comn.validation.user.validator;
 import com.example.security.comn.validation.user.annotation.PhoneNumberFormat;
 import com.example.security.comn.validation.user.checker.PhoneNumberFormatChecker;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberFormat, String> {
     private boolean nullable = false;

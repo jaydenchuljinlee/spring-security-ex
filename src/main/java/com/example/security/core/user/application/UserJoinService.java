@@ -1,12 +1,12 @@
 package com.example.security.core.user.application;
 
-import com.example.security.comn.utils.PasswordEncoder;
 import com.example.security.core.user.domain.entity.Gender;
 import com.example.security.core.user.domain.entity.UserDetail;
 import com.example.security.core.user.domain.exceptions.UserDuplicationException;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

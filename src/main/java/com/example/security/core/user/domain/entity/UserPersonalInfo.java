@@ -5,14 +5,17 @@ import com.example.security.comn.validation.user.checker.BirthDateFormatChecker;
 import com.example.security.comn.validation.user.checker.PhoneNumberFormatChecker;
 import com.example.security.comn.validation.user.checker.UserNameFormatChecker;
 import com.example.security.core.user.domain.exceptions.UserDomainValueException;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
 @Table(name ="user_personal_info")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserPersonalInfo extends BaseEntity {
 
     @Column(name ="user_name")
