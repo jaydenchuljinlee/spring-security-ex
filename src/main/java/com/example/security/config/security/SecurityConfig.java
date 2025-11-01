@@ -1,5 +1,6 @@
 package com.example.security.config.security;
 
+import com.example.security.config.security.filter.JwtTokenFilter;
 import com.example.security.config.security.filter.JwtTokenFilterFactory;
 import com.example.security.config.security.handler.form.FormLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
@@ -89,12 +90,15 @@ public class SecurityConfig {
                 )
 
                 // JWT 필터 추가
-                .addFilterBefore(
-                        jwtTokenFilterFactory.getInstance(),
-                        UsernamePasswordAuthenticationFilter.class
+                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public JwtTokenFilter jwtTokenFilter() {
+        return jwtTokenFilterFactory.getInstance();
     }
 
     /**
