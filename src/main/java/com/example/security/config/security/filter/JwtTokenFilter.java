@@ -51,6 +51,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             setErrorResponse(response, ErrorCode.TOKEN_EXPIRED.getCode());
         } catch(SignatureException e) {
             setErrorResponse(response, HttpStatus.UNAUTHORIZED.value());
+        } catch(Exception e) {
+            setErrorResponse(response, HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
         if (StringUtils.isNotEmpty(email)) {
