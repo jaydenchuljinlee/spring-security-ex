@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class RedisProperties {
-        @Value("${spring.redis.host}")
+        @Value("${spring.data.redis.host}")
         private String host;
 
-        @Value("${spring.redis.port}")
+        @Value("${spring.data.redis.port}")
         private int port;
 }

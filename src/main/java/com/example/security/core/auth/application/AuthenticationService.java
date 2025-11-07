@@ -1,11 +1,11 @@
 package com.example.security.core.auth.application;
 
-import com.example.security.comn.utils.PasswordEncoder;
 import com.example.security.core.auth.domain.exceptions.AuthenticationFailException;
 import com.example.security.core.user.domain.entity.UserDetail;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthenticationService {
     private final UserDetailRepository userDetailRepository;
     private final PasswordEncoder passwordEncoder;

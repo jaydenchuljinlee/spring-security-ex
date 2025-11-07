@@ -2,7 +2,7 @@ package com.example.security.comn.utils;
 
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
 
 @Component
 public class CookieUtils {

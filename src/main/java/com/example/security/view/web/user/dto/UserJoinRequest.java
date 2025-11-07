@@ -5,7 +5,7 @@ import com.example.security.core.user.domain.entity.Gender;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 @Data
 public class UserJoinRequest {

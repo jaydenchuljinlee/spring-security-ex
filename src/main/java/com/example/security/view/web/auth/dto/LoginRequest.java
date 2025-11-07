@@ -4,7 +4,7 @@ import com.example.security.comn.validation.user.annotation.EmailFormat;
 import com.example.security.comn.validation.user.annotation.UserPasswordFormat;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 public class LoginRequest {

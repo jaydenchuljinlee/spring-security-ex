@@ -1,8 +1,8 @@
 package com.example.security.comn.validation.user.checker;
 
+import io.micrometer.common.util.StringUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserNameFormatChecker {
@@ -13,7 +13,7 @@ public class UserNameFormatChecker {
             return false;
         }
 
-        return StringUtils.isNoneBlank(mayUserName) &&
+        return StringUtils.isNotBlank(mayUserName) &&
                 mayUserName.length() <= USER_NAME_MAX_LENGTH &&
                 containsOnlySupportedCharacter(mayUserName);
     }

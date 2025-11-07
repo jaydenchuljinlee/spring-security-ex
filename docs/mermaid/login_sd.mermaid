@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant Client
+    participant Server as Spring Boot App
+    participant JWTProvider as JWT Provider
+    participant Redis
+
+    Client->>Server: POST /api/auth/login (email, password)
+    Server->>Server: 사용자 정보 확인 및 비밀번호 검증 (Argon2)
+
+    alt 인증 성공
+        Server->>JWTProvider: Access / Refresh Token 생성 요청
+        JWTProvider-->>Server: 생성된 Tokens 반환
+        Server->>Redis: Refresh Token 저장 (key: email)
+        Redis-->>Server: 저장 완료
+        Server-->>Client: 200 OK (Access Token, Refresh Token)
+    else 인증 실패
+        Server-->>Client: 401 Unauthorized
+    end

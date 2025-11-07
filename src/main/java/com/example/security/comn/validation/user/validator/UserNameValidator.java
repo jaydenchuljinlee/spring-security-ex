@@ -3,8 +3,8 @@ package com.example.security.comn.validation.user.validator;
 import com.example.security.comn.validation.user.annotation.UserNameForamt;
 import com.example.security.comn.validation.user.checker.UserNameFormatChecker;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class UserNameValidator implements ConstraintValidator<UserNameForamt, String> {
     private boolean nullable = false;

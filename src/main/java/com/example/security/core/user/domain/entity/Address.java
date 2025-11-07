@@ -1,7 +1,7 @@
 package com.example.security.core.user.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Address {

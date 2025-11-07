@@ -6,8 +6,8 @@ import com.example.security.core.auth.application.TokenService;
 import com.example.security.core.user.application.UserDetailService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
+import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,10 +16,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RequiredArgsConstructor
@@ -51,6 +51,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             setErrorResponse(response, ErrorCode.TOKEN_EXPIRED.getCode());
         } catch(SignatureException e) {
             setErrorResponse(response, HttpStatus.UNAUTHORIZED.value());
+        } catch(Exception e) {
+            setErrorResponse(response, HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
         if (StringUtils.isNotEmpty(email)) {

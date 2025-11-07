@@ -2,8 +2,8 @@ package com.example.security.comn.validation.user.annotation;
 
 import com.example.security.comn.validation.user.validator.EmailFormatValidator;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD})
