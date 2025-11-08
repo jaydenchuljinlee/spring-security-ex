@@ -5,6 +5,8 @@ import com.example.security.comn.validation.user.checker.BirthDateFormatChecker;
 import com.example.security.comn.validation.user.checker.EmailFormatChecker;
 import com.example.security.comn.validation.user.checker.PhoneNumberFormatChecker;
 import com.example.security.comn.validation.user.checker.UserNameFormatChecker;
+import com.example.security.core.user.domain.entity.enums.Gender;
+import com.example.security.core.user.domain.entity.enums.UserStatus;
 import com.example.security.core.user.domain.exceptions.UserDomainValueException;
 import io.micrometer.common.util.StringUtils;
 import lombok.AccessLevel;
@@ -25,7 +27,7 @@ import java.util.Objects;
 @Entity @Getter
 @Table(name = "user_detail")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserDetail extends BaseEntity implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
     @Column(name = "email")
     private String email;
 
@@ -58,7 +60,7 @@ public class UserDetail extends BaseEntity implements UserDetails {
     private static final int FAIL_INIT_CNT = 0;
 
     @Builder
-    private UserDetail(String email, String encodedPassword, String userName, String phoneNumber, Gender gender) {
+    private User(String email, String encodedPassword, String userName, String phoneNumber, Gender gender) {
         this.validateAndSetEmail(email);
         this.validateAndSetEncodedPassword(encodedPassword);
         this.validateAndSetName(userName);
@@ -163,7 +165,7 @@ public class UserDetail extends BaseEntity implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserDetail that = (UserDetail) o;
+        User that = (User) o;
         return id != null && Objects.equals(id, that.id);
     }
 

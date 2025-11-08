@@ -1,7 +1,7 @@
 package com.example.security.view.web.user.dto;
 
-import com.example.security.core.user.domain.entity.Gender;
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.enums.Gender;
+import com.example.security.core.user.domain.entity.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -22,12 +22,12 @@ public class UserJoinResponse {
     @JsonProperty("gender")
     private String gender;
 
-    public static UserJoinResponse of(UserDetail userDetail) {
-        Gender gender= userDetail.getGender();
+    public static UserJoinResponse of(User user) {
+        Gender gender= user.getGender();
         return UserJoinResponse.builder()
-                .id(userDetail.getId())
-                .email(userDetail.getEmail())
-                .name(userDetail.getName())
+                .id(user.getId())
+                .email(user.getEmail())
+                .name(user.getName())
                 .gender((gender == null) ? null : gender.name())
                 .build();
     }

@@ -3,7 +3,7 @@ package com.example.security.view.web.user;
 import com.example.security.comn.response.BaseResponse;
 import com.example.security.core.user.application.UserDetailService;
 import com.example.security.core.user.application.UserJoinService;
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
 import com.example.security.view.web.user.dto.UserJoinRequest;
 import com.example.security.view.web.user.dto.UserJoinResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class UserController {
     public ResponseEntity<BaseResponse<UserJoinResponse>> joinUser(
             @Valid @RequestBody UserJoinRequest request
             ) {
-        UserDetail joinedUser = this.userJoinService.join(
+        User joinedUser = this.userJoinService.join(
                 request.getEmail(),
                 request.getPassword(),
                 request.getName(),

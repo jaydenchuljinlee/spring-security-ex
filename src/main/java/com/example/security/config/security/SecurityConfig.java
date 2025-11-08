@@ -3,6 +3,7 @@ package com.example.security.config.security;
 import com.example.security.config.security.filter.JwtTokenFilter;
 import com.example.security.config.security.filter.JwtTokenFilterFactory;
 import com.example.security.config.security.handler.form.FormLoginSuccessHandler;
+import com.example.security.core.auth.application.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ import java.util.List;
 public class SecurityConfig {
     private final JwtTokenFilterFactory jwtTokenFilterFactory;
     private final FormLoginSuccessHandler formLoginSuccessHandler;
+    private final CustomOAuth2UserService customOAuth2UserService;
     private final Environment environment;
 
     /**
@@ -85,11 +87,17 @@ public class SecurityConfig {
                 // Form 로그인 설정
                 .formLogin(form -> form
                         .loginProcessingUrl("/login")
-                        .successHandler(formLoginSuccessHandler)
-                        .permitAll()
+                        .successHandler(formLoginSuccessHandler) // 성공 핸들러는 그대로 사용
                 )
-
-                // JWT 필터 추가
+                
+                // OAuth2 로그인 설정
+                .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .userService(customOAuth2UserService) // Custom UserService 등록
+                        )
+                );
+        
+        http
                 .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class
                 );
 

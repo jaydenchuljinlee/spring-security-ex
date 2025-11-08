@@ -4,6 +4,7 @@ import com.example.security.comn.entity.BaseEntity;
 import com.example.security.comn.validation.user.checker.BirthDateFormatChecker;
 import com.example.security.comn.validation.user.checker.PhoneNumberFormatChecker;
 import com.example.security.comn.validation.user.checker.UserNameFormatChecker;
+import com.example.security.core.user.domain.entity.enums.Gender;
 import com.example.security.core.user.domain.exceptions.UserDomainValueException;
 import lombok.AccessLevel;
 import lombok.Builder;

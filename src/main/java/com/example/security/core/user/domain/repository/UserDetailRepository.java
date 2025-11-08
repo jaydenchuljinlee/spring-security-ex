@@ -1,15 +1,15 @@
 package com.example.security.core.user.domain.repository;
 
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
 
 import java.util.Optional;
 
 public interface UserDetailRepository {
-    UserDetail save(UserDetail userDetail);
+    User save(User user);
 
-    Optional<UserDetail> findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     boolean existsByEmail(String email);
 
-    Optional<UserDetail> findById(long userId);
+    Optional<User> findById(long userId);
 }

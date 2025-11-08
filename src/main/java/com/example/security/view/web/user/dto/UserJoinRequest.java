@@ -1,7 +1,7 @@
 package com.example.security.view.web.user.dto;
 
 import com.example.security.comn.validation.user.annotation.*;
-import com.example.security.core.user.domain.entity.Gender;
+import com.example.security.core.user.domain.entity.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
