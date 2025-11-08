@@ -61,6 +61,16 @@ sequenceDiagram
   end
 ```
 
+## .env 파일 추가
+
+```text
+DB_USERNAME={DB_이름}
+DB_PASSWORD={DB_비밀번호}
+KAKAO_CLIENT_ID={KAKAO_클라이언트_ID}
+KAKAO_CLIENT_SECRET={KAKAO_클라이언트_비밀번호}
+JWT_SECRET_KEY={임의의_비밀키}
+```
+
 
 ## 📝 트러블슈팅
 
