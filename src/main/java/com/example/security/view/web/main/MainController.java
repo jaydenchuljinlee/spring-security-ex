@@ -3,45 +3,39 @@ package com.example.security.view.web.main;
 import com.example.security.comn.enums.request.RequestCookie;
 import com.example.security.comn.enums.request.RequestHeaderType;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 
 @Slf4j
-@RestController
+@Controller
 public class MainController {
 
-    @ResponseBody
     @GetMapping("/main")
-    public HashMap<String, String> main(HttpServletRequest request, HttpServletResponse response) {
-       String accessToken = request.getHeader(RequestHeaderType.X_AUTH_ACCESS_TOKEN.value());
-       Cookie[] cookies = request.getCookies();
-
-        log.info(accessToken);
+    public String main(Model model, HttpServletRequest request) {
+        String accessToken = request.getHeader(RequestHeaderType.X_AUTH_ACCESS_TOKEN.value());
+        Cookie[] cookies = request.getCookies();
 
         String value = null;
-
-        for (Cookie cookie: cookies) {
-            if (!RequestCookie.AUTH_ID.getValue().equals(cookie.getName())) continue;
-
-            value = cookie.getValue();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (RequestCookie.AUTH_ID.getValue().equals(cookie.getName())) {
+                    value = cookie.getValue();
+                }
+            }
         }
 
-        HashMap<String, String> result = new HashMap<>();
+        // 로그
+        log.info("AccessToken: {}", accessToken);
+        log.info("Cookie Value: {}", value);
 
-        result.put(value, accessToken);
+        // 템플릿에서 접근할 데이터 추가
+        model.addAttribute("authId", value);
+        model.addAttribute("accessToken", accessToken);
 
-        return result;
-    }
-
-    @ResponseBody
-    @GetMapping("/passed")
-    public String passedLogin() {
-        return "login is passed";
+        return "main"; // templates/main.html
     }
 }

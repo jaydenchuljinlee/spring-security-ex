@@ -95,6 +95,7 @@ public class SecurityConfig {
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(customOAuth2UserService) // Custom UserService 등록
                         )
+                        .successHandler(formLoginSuccessHandler)
                 );
         
         http
