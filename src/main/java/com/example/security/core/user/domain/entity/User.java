@@ -131,6 +131,10 @@ public class User extends BaseEntity implements UserDetails {
         return result;
     }
 
+    public void assignStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
+
     @Override
     public String getPassword() {
         return this.getEncodedPassword();
