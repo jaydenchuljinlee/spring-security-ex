@@ -1,6 +1,6 @@
 package com.example.security.core.user.application;
 
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,7 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserDetail> userDetailOptional = userDetailRepository.findByEmail(username);
+        Optional<User> userDetailOptional = userDetailRepository.findByEmail(username);
 
         if (userDetailOptional.isEmpty()) {
             throw new UsernameNotFoundException(username);

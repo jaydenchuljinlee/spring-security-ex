@@ -1,6 +1,6 @@
 package com.example.security.core.user.infrastructure.jpa;
 
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
 import com.example.security.core.user.domain.exceptions.UserRepositoryIntegrationException;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +24,14 @@ public class JpaUserDetailRepository implements UserDetailRepository {
     }
 
     @Override
-    public UserDetail save(UserDetail userDetail) {
+    public User save(User user) {
         return this.wrapIntegrationException(
-                () -> this.repository.save(userDetail)
+                () -> this.repository.save(user)
         );
     }
 
     @Override
-    public Optional<UserDetail> findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return this.wrapIntegrationException(
                 () -> this.repository.findByEmail(email)
         );
@@ -45,7 +45,7 @@ public class JpaUserDetailRepository implements UserDetailRepository {
     }
 
     @Override
-    public Optional<UserDetail> findById(long userId) {
+    public Optional<User> findById(long userId) {
         return this.repository.findById(userId);
     }
 }

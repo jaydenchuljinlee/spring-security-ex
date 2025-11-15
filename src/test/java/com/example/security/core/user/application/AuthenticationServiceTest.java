@@ -1,14 +1,15 @@
 package com.example.security.core.user.application;
 
 import com.example.security.core.auth.application.AuthenticationService;
-import com.example.security.core.user.domain.entity.Gender;
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
+import com.example.security.core.user.domain.entity.enums.Gender;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class AuthenticationServiceTest {
         String email = "ironjin92@gmail.com";
         String password = "Passw@rd123";
 
-        UserDetail user = UserDetail.builder()
+        User user = User.builder()
                 .email("ironjin92@gmail.com")
                 .encodedPassword("Passw@rd123")
                 .userName("cheoljin")
@@ -46,7 +47,7 @@ public class AuthenticationServiceTest {
         given(passwordEncoder.matches(password, "Passw@rd123")).willReturn(true);
 
         // when & then
-        UserDetail result = user;
+        User result = user;
 
         assertThat(authenticationService.authenticate(email, password)).isEqualTo(result);
     }

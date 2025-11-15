@@ -1,7 +1,7 @@
 package com.example.security.core.user.application;
 
-import com.example.security.core.user.domain.entity.Gender;
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
+import com.example.security.core.user.domain.entity.enums.Gender;
 import com.example.security.core.user.domain.exceptions.UserDuplicationException;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +20,11 @@ public class UserJoinService {
     private final UserDetailRepository userDetailRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserDetail join(String email, String password, String name, String phoneNumber, Gender gender) {
+    public User join(String email, String password, String name, String phoneNumber, Gender gender) {
         this.validateDuplicatedUser(email);
 
         String encodedPassword = passwordEncoder.encode(password);
-        UserDetail userDetail = UserDetail.builder()
+        User userDetail = User.builder()
                 .email(email)
                 .encodedPassword(encodedPassword)
                 .userName(name)
@@ -36,7 +36,7 @@ public class UserJoinService {
         return userDetail;
     }
 
-    public Optional<UserDetail> getUser(String email) {
+    public Optional<User> getUser(String email) {
         return this.userDetailRepository.findByEmail(email);
     }
 

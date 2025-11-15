@@ -1,7 +1,7 @@
 package com.example.security.core.auth.application;
 
 import com.example.security.core.auth.domain.exceptions.AuthenticationFailException;
-import com.example.security.core.user.domain.entity.UserDetail;
+import com.example.security.core.user.domain.entity.User;
 import com.example.security.core.user.domain.repository.UserDetailRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,14 +19,14 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public UserDetail authenticate(String email, String password) {
-        Optional<UserDetail> userOptional = this.userDetailRepository.findByEmail(email);
+    public User authenticate(String email, String password) {
+        Optional<User> userOptional = this.userDetailRepository.findByEmail(email);
 
         if (userOptional.isEmpty()) {
             throw AuthenticationFailException.userNotRegistered(email);
         }
 
-        UserDetail user = userOptional.get();
+        User user = userOptional.get();
         boolean passwordMatched = this.passwordEncoder.matches(password, user.getPassword());
 
         if (!passwordMatched) {

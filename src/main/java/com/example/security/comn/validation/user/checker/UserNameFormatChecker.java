@@ -29,6 +29,9 @@ public class UserNameFormatChecker {
 
     private static boolean isSupportedCharacter(char c) {
         return Character.isLowerCase(c) ||
-                Character.isUpperCase(c);
+                Character.isUpperCase(c) ||
+                Character.UnicodeBlock.of(c) == Character.UnicodeBlock.HANGUL_SYLLABLES ||
+                Character.UnicodeBlock.of(c) == Character.UnicodeBlock.HANGUL_JAMO ||
+                Character.UnicodeBlock.of(c) == Character.UnicodeBlock.HANGUL_COMPATIBILITY_JAMO;
     }
 }

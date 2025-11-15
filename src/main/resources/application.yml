@@ -3,6 +3,8 @@ server:
 
   profiles:
     active: local
+
+spring:
   jpa:
     hibernate:
       ddl-auto: create
@@ -11,24 +13,41 @@ server:
     properties:
       hibernate:
         format_sql: true
-
-spring:
   datasource:
     url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: 1234
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     redis:
       host: localhost
       port: 6379
-
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-authentication-method: client_secret_post
+            authorization-grant-type: authorization_code
+            client-name: Kakao
+            scope:
+              - account_email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
 
 config:
   auth:
-    secret: youcantrevealthesecretkey1234012300040
+    secret: ${JWT_SECRET_KEY}
     token-expiration-hour: 1480849147370
 ---
-
-
-

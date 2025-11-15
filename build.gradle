@@ -39,9 +39,11 @@ dependencies {
 	// web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 	// utils
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'io.github.cdimascio:dotenv-java:3.0.0'
 
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
@@ -61,6 +63,7 @@ dependencies {
 
 	// security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.bouncycastle:bcprov-jdk18on:1.76'
 
 	// test
